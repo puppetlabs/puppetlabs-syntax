@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'puppet-syntax'
+require 'puppetlabs-syntax'
 require 'rake'
 require 'rake/tasklib'
 
-module PuppetSyntax
+module PuppetlabsSyntax
   class RakeTask < ::Rake::TaskLib
     def filelist(paths)
-      excludes = PuppetSyntax.exclude_paths
+      excludes = PuppetlabsSyntax.exclude_paths
       excludes.push('pkg/**/*')
       excludes.push('vendor/**/*')
       files = FileList[paths]
@@ -16,15 +16,15 @@ module PuppetSyntax
     end
 
     def filelist_manifests
-      filelist(PuppetSyntax.manifests_paths)
+      filelist(PuppetlabsSyntax.manifests_paths)
     end
 
     def filelist_templates
-      filelist(PuppetSyntax.templates_paths)
+      filelist(PuppetlabsSyntax.templates_paths)
     end
 
     def filelist_hiera_yaml
-      filelist(PuppetSyntax.hieradata_paths)
+      filelist(PuppetlabsSyntax.hieradata_paths)
     end
 
     def initialize(*_args)
@@ -40,17 +40,17 @@ module PuppetSyntax
         task :manifests do |t|
           warn "---> #{t.name}"
 
-          c = PuppetSyntax::Manifests.new
+          c = PuppetlabsSyntax::Manifests.new
           output, has_errors = c.check(filelist_manifests)
           $stdout.puts "#{output.join("\n")}\n" unless output.empty?
-          exit 1 if has_errors || (output.any? && PuppetSyntax.fail_on_deprecation_notices)
+          exit 1 if has_errors || (output.any? && PuppetlabsSyntax.fail_on_deprecation_notices)
         end
 
         desc 'Syntax check Puppet templates'
         task :templates do |t|
           warn "---> #{t.name}"
 
-          c = PuppetSyntax::Templates.new
+          c = PuppetlabsSyntax::Templates.new
           result = c.check(filelist_templates)
           unless result[:warnings].empty?
             $stdout.puts 'WARNINGS:'
@@ -71,8 +71,8 @@ module PuppetSyntax
         namespace :hiera do
           task :yaml do |t|
             warn "---> #{t.name}"
-            warn "#{t.name} was called, but PuppetSyntax.check_hiera_keys is false. hiera syntax won't be checked" unless PuppetSyntax.check_hiera_keys
-            c = PuppetSyntax::Hiera.new
+            warn "#{t.name} was called, but PuppetlabsSyntax.check_hiera_keys is false. hiera syntax won't be checked" unless PuppetlabsSyntax.check_hiera_keys
+            c = PuppetlabsSyntax::Hiera.new
             errors = c.check(filelist_hiera_yaml)
             $stdout.puts "#{errors.join("\n")}\n" unless errors.empty?
             exit 1 unless errors.empty?
@@ -83,4 +83,4 @@ module PuppetSyntax
   end
 end
 
-PuppetSyntax::RakeTask.new
+PuppetlabsSyntax::RakeTask.new

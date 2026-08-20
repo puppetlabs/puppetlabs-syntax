@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module PuppetSyntax
+module PuppetlabsSyntax
   class Manifests
     def check(filelist)
       raise 'Expected an array of files' unless filelist.is_a?(Array)

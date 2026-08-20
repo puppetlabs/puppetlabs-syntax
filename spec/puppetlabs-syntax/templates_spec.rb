@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe PuppetSyntax::Templates do
+describe PuppetlabsSyntax::Templates do
   let(:subject) { described_class.new }
   let(:conditional_warning_regex) do
     # ruby 3.4 uses '= ,ruby 2.6 to 3.3 uses `=
@@ -114,7 +114,7 @@ describe PuppetSyntax::Templates do
 
   context "when the 'epp_only' options is set" do
     before do
-      PuppetSyntax.epp_only = true
+      PuppetlabsSyntax.epp_only = true
     end
 
     it 'processes an ERB as EPP and find an error' do

@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'puppet'
 
-describe PuppetSyntax::Manifests do
+describe PuppetlabsSyntax::Manifests do
   let(:subject) { described_class.new }
 
   it 'expects an array of files' do
