@@ -1,34 +1,36 @@
-# puppet-syntax
+# puppetlabs-syntax
 
-[![License](https://img.shields.io/github/license/voxpupuli/puppet-syntax.svg)](https://github.com/voxpupuli/puppet-syntax/blob/master/LICENSE.txt)
-[![Release](https://github.com/voxpupuli/puppet-syntax/actions/workflows/release.yml/badge.svg)](https://github.com/voxpupuli/puppet-syntax/actions/workflows/release.yml)
-[![Test](https://github.com/voxpupuli/puppet-syntax/actions/workflows/test.yml/badge.svg)](https://github.com/voxpupuli/puppet-syntax/actions/workflows/test.yml)
-[![RubyGem Version](https://img.shields.io/gem/v/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
-[![RubyGem Downloads](https://img.shields.io/gem/dt/puppet-syntax.svg)](https://rubygems.org/gems/puppet-syntax)
+> This is the Perforce-maintained puppetlabs fork of [voxpupuli/puppet-syntax](https://github.com/voxpupuli/puppet-syntax). It exists to unblock puppet ↔ openvox core switching in downstream apps. Not a drop-in replacement for the upstream gem.
 
-# Puppet::Syntax
+[![License](https://img.shields.io/github/license/puppetlabs/puppetlabs-syntax.svg)](https://github.com/puppetlabs/puppetlabs-syntax/blob/master/LICENSE.txt)
+[![Release](https://github.com/puppetlabs/puppetlabs-syntax/actions/workflows/release.yml/badge.svg)](https://github.com/puppetlabs/puppetlabs-syntax/actions/workflows/release.yml)
+[![Test](https://github.com/puppetlabs/puppetlabs-syntax/actions/workflows/ci.yml/badge.svg)](https://github.com/puppetlabs/puppetlabs-syntax/actions/workflows/ci.yml)
+[![RubyGem Version](https://img.shields.io/gem/v/puppetlabs-syntax.svg)](https://rubygems.org/gems/puppetlabs-syntax)
+[![RubyGem Downloads](https://img.shields.io/gem/dt/puppetlabs-syntax.svg)](https://rubygems.org/gems/puppetlabs-syntax)
 
-Puppet::Syntax checks for correct syntax in Puppet manifests, templates, and
+# Puppetlabs::Syntax
+
+Puppetlabs::Syntax checks for correct syntax in Puppet manifests, templates, and
 Hiera YAML.
 
 ## Version support
 
-Puppet::Syntax is supported with:
+Puppetlabs::Syntax is supported with:
 
-- OpenVox >= 8.0
+- Puppet >= 8.0, < 10
 - Ruby >= 3.2
 
-For the specific versions that we test against, see the [GitHub Actions workflow](.github/workflows/test.yml) or the [Gem spec](puppet-syntax.gemspec).
+For the specific versions that we test against, see the [GitHub Actions workflow](.github/workflows/ci.yml) or the [Gem spec](puppetlabs-syntax.gemspec).
 
 ## Installation
 
-To install Puppet::Syntax, either add it to your module's Gemfile or install
+To install Puppetlabs::Syntax, either add it to your module's Gemfile or install
 the gem manually.
 
 * To install with the Gemfile, add:
 
 ```ruby
-gem 'puppet-syntax'
+gem 'puppetlabs-syntax'
 ```
 
 And then execute:
@@ -40,42 +42,42 @@ bundle install
 * To install the gem yourself, run:
 
 ```sh
-gem install puppet-syntax
+gem install puppetlabs-syntax
 ```
 
 ## Configuration
 
-To configure Puppet::Syntax, add any of the following settings to your `Rakefile`.
+To configure Puppetlabs::Syntax, add any of the following settings to your `Rakefile`.
 
 * To exclude certain paths from the syntax checks, set:
 
 ```ruby
-PuppetSyntax.exclude_paths = ["vendor/**/*"]
+PuppetlabsSyntax.exclude_paths = ["vendor/**/*"]
 ```
 
 * To configure specific paths for the Hiera syntax check, specify `hieradata_paths`. This is useful if you use Hiera data inside your module.
 
 ```ruby
-PuppetSyntax.hieradata_paths = ["**/data/**/*.yaml", "hieradata/**/*.yaml", "hiera*.yaml"]
+PuppetlabsSyntax.hieradata_paths = ["**/data/**/*.yaml", "hieradata/**/*.yaml", "hiera*.yaml"]
 ```
 
 * To configure specific paths for the Puppet syntax checks or for the templates checks, specify `manifests_paths` or `templates_paths` respectively. This is useful if you want to check specific paths only.
 
 ```ruby
-PuppetSyntax.manifests_paths = ["**/environments/future/*.pp"]
-PuppetSyntax.templates_paths = ["**/modules/**/templates/*.erb"]
+PuppetlabsSyntax.manifests_paths = ["**/environments/future/*.pp"]
+PuppetlabsSyntax.templates_paths = ["**/modules/**/templates/*.erb"]
 ```
 
-* To ignore deprecation warnings, disable `fail_on_deprecation_notices`. By default, `puppet-syntax` fails if it encounters Puppet deprecation notices. If you are working with a legacy code base and want to ignore such non-fatal warnings, you might want to override the default behavior.
+* To ignore deprecation warnings, disable `fail_on_deprecation_notices`. By default, `puppetlabs-syntax` fails if it encounters Puppet deprecation notices. If you are working with a legacy code base and want to ignore such non-fatal warnings, you might want to override the default behavior.
 
 ```ruby
-PuppetSyntax.fail_on_deprecation_notices = false
+PuppetlabsSyntax.fail_on_deprecation_notices = false
 ```
 
 * To enable a syntax check on Hiera keys, set:
 
 ```ruby
-PuppetSyntax.check_hiera_keys = true
+PuppetlabsSyntax.check_hiera_keys = true
 ```
 
 This reports common mistakes in key names in Hiera files, such as:
@@ -89,18 +91,18 @@ This reports common mistakes in key names in Hiera files, such as:
 * To enable a syntax check on Hiera values, set:
 
 ```ruby
-PuppetSyntax.check_hiera_data = true
+PuppetlabsSyntax.check_hiera_data = true
 ```
 
 ## Usage
 
-* To enable Puppet::Syntax, include the following in your module's `Rakefile`:
+* To enable Puppetlabs::Syntax, include the following in your module's `Rakefile`:
 
 ```ruby
-require 'puppet-syntax/tasks/puppet-syntax'
+require 'puppetlabs-syntax/tasks/puppetlabs-syntax'
 ```
 
-For Continuous Integration, use Puppet::Syntax in conjunction with `puppet-lint`
+For Continuous Integration, use Puppetlabs::Syntax in conjunction with `puppet-lint`
 and spec tests. Add the following to your module's `Rakefile`:
 
 ```ruby
@@ -133,7 +135,7 @@ Tasks: TOP => syntax => syntax:manifests
 
 ## Checks
 
-Puppet::Syntax makes the following checks in the directories and subdirectories
+Puppetlabs::Syntax makes the following checks in the directories and subdirectories
 of the module, relative to the location of the `Rakefile`.
 
 ### Hiera
@@ -188,7 +190,7 @@ parser enabled.
 
 ## Making a new Release
 
-* Update version in `lib/puppet-syntax/version.rb`
+* Update version in `lib/puppetlabs-syntax/version.rb`
 * Run the changelog rake task (bundle exec rake changelog)
 * Create a PR
 * Get it reviewed and merged
