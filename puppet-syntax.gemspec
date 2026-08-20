@@ -11,9 +11,9 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Syntax checks for Puppet manifests, templates, and Hiera YAML'
   spec.homepage      = 'https://github.com/puppetlabs/puppetlabs-syntax/'
   spec.license       = 'MIT'
-  spec.description = <<-EOF
+  spec.description = <<-DESC
     Syntax checks for Puppet manifests and templates.
-  EOF
+  DESC
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']

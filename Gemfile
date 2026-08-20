@@ -2,7 +2,9 @@
 
 # For puppetcore, set GEM_SOURCE_PUPPETCORE = 'https://rubygems-puppetcore.puppet.com'
 gemsource_default = ENV['GEM_SOURCE'] || 'https://rubygems.org'
-gemsource_puppetcore = if ENV['PUPPET_FORGE_TOKEN']
+gemsource_puppetcore = if ENV['GEM_SOURCE']
+                         gemsource_default
+                       elsif ENV['PUPPET_FORGE_TOKEN']
                          'https://rubygems-puppetcore.puppet.com'
                        else
                          ENV['GEM_SOURCE_PUPPETCORE'] || gemsource_default
@@ -12,7 +14,7 @@ source gemsource_default
 gemspec
 
 def location_for(place_or_version, fake_version = nil, opts = {})
-  git_url_regex = /\A(?<url>(https?|git)[:@][^#]*)(#(?<branch>.*))?/
+  git_url_regex = /\A(?<url>(?:https?|git)[:@][^#]*)(?:#(?<branch>.*))?/
   file_url_regex = %r{\Afile://(?<path>.*)}
 
   if place_or_version && (git_url = place_or_version.match(git_url_regex))
@@ -31,7 +33,7 @@ end
 # When PUPPET_FORGE_TOKEN is unset (e.g. fork PRs, local dev without a token),
 # gemsource_puppetcore falls through to gemsource_default (public rubygems.org)
 # and no auth is attempted against Puppetcore.
-gem 'puppet', *location_for(ENV['PUPPET_VERSION'], nil, { source: gemsource_puppetcore }) if ENV['PUPPET_VERSION']
+gem 'puppet', *location_for(ENV['PUPPET_GEM_VERSION'], nil, { source: gemsource_puppetcore }) if ENV['PUPPET_GEM_VERSION']
 # Puppet on Ruby 3.3 / 3.4 has some missing dependencies
 gem 'syslog', '~> 0.3' if RUBY_VERSION >= '3.4'
 
