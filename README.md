@@ -2,7 +2,7 @@
 
 > This is the Perforce-maintained puppetlabs fork of [voxpupuli/puppet-syntax](https://github.com/voxpupuli/puppet-syntax). It exists to unblock puppet ↔ openvox core switching in downstream apps. Not a drop-in replacement for the upstream gem.
 
-[![License](https://img.shields.io/github/license/puppetlabs/puppetlabs-syntax.svg)](https://github.com/puppetlabs/puppetlabs-syntax/blob/master/LICENSE.txt)
+[![License](https://img.shields.io/github/license/puppetlabs/puppetlabs-syntax.svg)](https://github.com/puppetlabs/puppetlabs-syntax/blob/main/LICENSE.txt)
 [![Release](https://github.com/puppetlabs/puppetlabs-syntax/actions/workflows/release.yml/badge.svg)](https://github.com/puppetlabs/puppetlabs-syntax/actions/workflows/release.yml)
 [![Test](https://github.com/puppetlabs/puppetlabs-syntax/actions/workflows/ci.yml/badge.svg)](https://github.com/puppetlabs/puppetlabs-syntax/actions/workflows/ci.yml)
 [![RubyGem Version](https://img.shields.io/gem/v/puppetlabs-syntax.svg)](https://rubygems.org/gems/puppetlabs-syntax)
