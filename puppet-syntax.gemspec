@@ -7,11 +7,12 @@ require 'puppet-syntax/version'
 Gem::Specification.new do |spec|
   spec.name          = 'puppet-syntax'
   spec.version       = PuppetSyntax::VERSION
-  spec.authors       = ['DevX team at Puppet by Perforce']
+  spec.email         = ['modules-team@puppet.com']
+  spec.authors       = ['Puppet, Inc.']
   spec.summary       = 'Syntax checks for Puppet manifests, templates, and Hiera YAML'
   spec.homepage      = 'https://github.com/puppetlabs/puppetlabs-syntax/'
   spec.license       = 'MIT'
-  spec.description = <<-DESC
+  spec.description   = <<-DESC
     Syntax checks for Puppet manifests and templates.
   DESC
   spec.files         = `git ls-files`.split($/)
