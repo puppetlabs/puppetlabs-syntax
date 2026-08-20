@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe PuppetSyntax do
+describe PuppetlabsSyntax do
   after do
     described_class.exclude_paths = []
   end

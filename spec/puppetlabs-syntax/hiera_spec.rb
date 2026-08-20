@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe PuppetSyntax::Hiera do
+describe PuppetlabsSyntax::Hiera do
   let(:subject) { described_class.new }
 
   it 'expects an array of files' do
@@ -33,8 +33,8 @@ describe PuppetSyntax::Hiera do
 
   context 'check_hiera_keys = true' do
     before do
-      PuppetSyntax.check_hiera_keys = true
-      PuppetSyntax.check_hiera_data = true
+      PuppetlabsSyntax.check_hiera_keys = true
+      PuppetlabsSyntax.check_hiera_data = true
     end
 
     it 'returns warnings for invalid keys' do

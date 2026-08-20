@@ -3,7 +3,7 @@
 require 'erb'
 require 'stringio'
 
-module PuppetSyntax
+module PuppetlabsSyntax
   class Templates
     def check(filelist)
       raise 'Expected an array of files' unless filelist.is_a?(Array)
@@ -13,7 +13,7 @@ module PuppetSyntax
       result = { warnings: [], errors: [] }
 
       filelist.each do |file|
-        if File.extname(file) == '.epp' or PuppetSyntax.epp_only
+        if File.extname(file) == '.epp' or PuppetlabsSyntax.epp_only
           tmp = validate_epp(file)
         elsif File.extname(file) == '.erb'
           tmp = validate_erb(file)

@@ -2,11 +2,11 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'puppet-syntax/version'
+require 'puppetlabs-syntax/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'puppet-syntax'
-  spec.version       = PuppetSyntax::VERSION
+  spec.name          = 'puppetlabs-syntax'
+  spec.version       = PuppetlabsSyntax::VERSION
   spec.email         = ['modules-team@puppet.com']
   spec.authors       = ['Puppet, Inc.']
   spec.summary       = 'Syntax checks for Puppet manifests, templates, and Hiera YAML'

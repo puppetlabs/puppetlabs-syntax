@@ -3,7 +3,7 @@
 require 'yaml'
 require 'base64'
 
-module PuppetSyntax
+module PuppetlabsSyntax
   class Hiera
     def check_hiera_key(key)
       if key.is_a? Symbol
@@ -108,11 +108,11 @@ module PuppetSyntax
         end
 
         yamldata.each do |k, v|
-          if PuppetSyntax.check_hiera_keys
+          if PuppetlabsSyntax.check_hiera_keys
             key_msg = check_hiera_key(k)
             errors << "WARNING: #{hiera_file}: Key :#{k}: #{key_msg}" if key_msg
           end
-          if PuppetSyntax.check_hiera_data
+          if PuppetlabsSyntax.check_hiera_data
             check_hiera_data(k, v).each do |value_msg|
               errors << "WARNING: #{hiera_file}: Key :#{k}: #{value_msg}"
             end

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'puppet-syntax/version'
+require 'puppetlabs-syntax/version'
 
-module PuppetSyntax
-  autoload :Hiera, 'puppet-syntax/hiera'
-  autoload :Manifests, 'puppet-syntax/manifests'
-  autoload :Templates, 'puppet-syntax/templates'
+module PuppetlabsSyntax
+  autoload :Hiera, 'puppetlabs-syntax/hiera'
+  autoload :Manifests, 'puppetlabs-syntax/manifests'
+  autoload :Templates, 'puppetlabs-syntax/templates'
 
   @exclude_paths = [
     'spec/fixtures/**/*',

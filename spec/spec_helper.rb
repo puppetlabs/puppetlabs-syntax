@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rspec'
-require 'puppet-syntax'
+require 'puppetlabs-syntax'
 
 def fixture_hiera(list)
   fixture_files(list, 'hiera')
