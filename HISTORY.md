@@ -1,4 +1,4 @@
-## v7.2.0
+## 7.2.0
 
 [Full Changelog](https://github.com/voxpupuli/puppet-syntax/compare/v7.1.0...v7.2.0)
 
